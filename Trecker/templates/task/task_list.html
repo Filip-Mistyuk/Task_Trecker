@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h2>Список завдань</h2>
+
+    <ul class="list-group">
+        {% for task in tasks %}
+                <span>{{ task.status }}</span>
+                <span>{{ task.priority }}</span>
+        {% empty %}
+        <li>Завдань не знайдено.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
