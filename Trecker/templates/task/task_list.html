@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
-    <h2>Список завдань</h2>
-
-    <ul class="list-group">
-        {% for task in tasks %}
-                <span>{{ task.status }}</span>
-                <span>{{ task.priority }}</span>
-        {% empty %}
-        <li>Завдань не знайдено.</li>
-        {% endfor %}
-    </ul>
+<h2>Task List</h2>
+<form method="get">
+    {{ form.as_p }}
+    <button type="submit">Filter</button>
+</form>
+<div class="task-cards">
+    {% for task in tasks %}
+    <div class="task-card">
+        <h3><a href="{% url 'task:task-detail' task.pk %}">{{ task.title }}</a></h3>
+        <p><strong>Status:</strong> {{ task.status }}</p>
+        <!-- Додайте інші поля, якщо потрібно -->
+    </div>
+    {% empty %}
+    <p>No tasks found.</p>
+    {% endfor %}
+</div>
 {% endblock %}

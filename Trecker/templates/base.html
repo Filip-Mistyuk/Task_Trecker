@@ -4,6 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Task Trecker</title>
+    <style>
+        .task-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .task-card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: calc(33.33% - 20px); /* Ширина карточки, наприклад, 33% з урахуванням відступів */
+        }
+
+        .task-card h3 {
+            margin-top: 0;
+        }
+
+        .task-card p {
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
     {% block content %}
