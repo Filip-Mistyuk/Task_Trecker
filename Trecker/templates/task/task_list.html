@@ -1,20 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Task List</h2>
-<form method="get">
-    {{ form.as_p }}
-    <button type="submit">Filter</button>
-</form>
-<div class="task-cards">
+<div class="container">
+    <header class="navbar" style="margin-left: 20px; margin-right: 20px; margin-top: 5px;">
+        <a href="/" class="navbar-brand" style="text-decoration: none; color: #627979; margin-left: 50px;">
+            <h1> Booking system</h1>
+        </a>
+        <nav>
+            <ul class="navbar-nav">
+                {% if request.user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'task:task-create' %}" class="nav-link">Create Task</a></li>
+                <li class="nav-item"><a href="{% url 'task:logout' %}" class="nav-link">Logout</a></li>
+                {% else %}
+                <li class="nav-item"><a href="{% url 'task:login' %}" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="{% url 'task:register' %}" class="nav-link">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+</div>
+<h2 style="text-align: center;">Task List</h2>
+<div class="task-cards" style="display: flex; justify-content: center;">
     {% for task in tasks %}
     <div class="task-card">
-        <h3><a href="{% url 'task:task-detail' task.pk %}">{{ task.title }}</a></h3>
+        <h3><a  href="{% url 'task:task-detail' task.pk %}" style="text-decoration: none; color: #627979;">{{ task.title }}</a></h3>
         <p><strong>Status:</strong> {{ task.status }}</p>
-        <!-- Додайте інші поля, якщо потрібно -->
     </div>
     {% empty %}
     <p>No tasks found.</p>
     {% endfor %}
 </div>
+
+<form method="get" style="text-align: center;">
+    <div style="margin-bottom: 10px;">
+        {{ form.as_p }}
+    </div>
+    <button type="submit" style="background-color: #627979; color: white; border: none; padding: 10px 20px; border-radius: 5px;">Filter</button>
+</form>
 {% endblock %}

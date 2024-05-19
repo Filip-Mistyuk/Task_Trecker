@@ -23,3 +23,10 @@ class Task(models.Model):
     priority = models.CharField(max_length=31, choices=PRIORITY_CHOICES, default='medium')
     due_date = models.DateTimeField(null=True, blank=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
+
+class Comment(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
+    content = models.TextField()
+    created_at = models.DateTimeField(null=True, blank=True)
+    media = models.FileField(upload_to='comments_media/', blank=True, null=True)
