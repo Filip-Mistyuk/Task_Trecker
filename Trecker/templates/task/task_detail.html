@@ -2,47 +2,61 @@
 
 {% block content %}
 {% load custom_tags %}
-<div class="container mt-3">
-    <h2>{{ task.title }}</h2>
-    <p>{{ task.description }}</p>
-    <p>Статус: <span class="badge badge-primary">{{ task.status }}</span></p>
-    <p>Пріоритет: <span class="badge badge-secondary">{{ task.priority }}</span></p>
+<div class="container_2 mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-center display-4">{{ task.title }}</h2>
+            <p class="card-text lead">{{ task.description }}</p>
+            <p class="mb-2"><strong>Статус:</strong> <span class="badge badge-primary">{{ task.status }}</span></p>
+            <p class="mb-4"><strong>Пріоритет:</strong> <span class="badge badge-secondary">{{ task.priority }}</span></p>
+        </div>
+    </div>
 
     <!-- Коментарі -->
-    <div class="comments mt-4">
-        <h3>Коментарі</h3>
-        {% for comment in task.comments.all %}
-            <div class="comment mb-2">
-                <p>{{ comment.content }}</p>
-                {% if comment.media %}
-                    <div>
-                        {% if comment.media.url|endswith:".jpg" or comment.media.url|endswith:".png" or comment.media.url|endswith:".jpeg" %}
-                            <img src="{{ comment.media.url }}" alt="Зображення коментаря" style="max-width: 100%;">
-                        {% elif comment.media.url|endswith:".mp4" %}
-                            <video width="320" height="240" controls>
-                                <source src="{{ comment.media.url }}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        {% else %}
-                            <a href="{{ comment.media.url }}">Завантажити файл</a>
-                        {% endif %}
+    <div class="comments mt-5">
+        <h3 class="text-muted">Коментарі</h3>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            {% for comment in task.comments.all %}
+                <div class="col">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <p class="card-text">{{ comment.content }}</p>
+                            {% if comment.media %}
+                                <div class="media-content my-3">
+                                    {% if comment.media.url|endswith:".jpg" or comment.media.url|endswith:".png" or comment.media.url|endswith:".jpeg" %}
+                                        <img src="{{ comment.media.url }}" alt="Зображення коментаря" class="img-fluid rounded">
+                                    {% elif comment.media.url|endswith:".mp4" %}
+                                        <video class="video-fluid rounded" controls style="width: 100%;">
+                                            <source src="{{ comment.media.url }}" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    {% else %}
+                                        <a href="{{ comment.media.url }}" class="btn btn-link">Завантажити файл</a>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            <small class="text-muted">Автор: {{ comment.author.username }}</small>
+                        </div>
                     </div>
-                {% endif %}
-                <small>Автор: {{ comment.author.username }}</small>
-            </div>
-        {% empty %}
-            <p>Коментарі відсутні.</p>
-        {% endfor %}
+                </div>
+            {% empty %}
+                <p class="text-muted">Коментарі відсутні.</p>
+            {% endfor %}
+        </div>
     </div>
 
     <!-- Форма додавання коментаря -->
-    <div class="add-comment mt-4">
-        <h4>Додати коментар</h4>
-        <form action="{% url 'task:task-detail' task.id %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ comment_form.as_p }}
-            <button type="submit" class="btn btn-primary">Відправити</button>
-        </form>
+    <div class="add-comment mt-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h4 class="card-title">Додати коментар</h4>
+                <form action="{% url 'task:task-detail' task.id %}" method="post" enctype="multipart/form-data" class="mt-3">
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+                    <button type="submit" class="btn btn-primary">Відправити</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

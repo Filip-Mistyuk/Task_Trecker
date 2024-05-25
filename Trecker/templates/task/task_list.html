@@ -20,11 +20,11 @@
     </header>
 </div>
 <h2 style="text-align: center;">Task List</h2>
-<div class="task-cards" style="display: flex; justify-content: center;">
+<div class="task-cards" style="display: flex; justify-content: center; margin-right: 50px; margin-left: 50px; background-color: #A1FD9C; border-radius: 30px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
     {% for task in tasks %}
-    <div class="task-card">
-        <h3><a  href="{% url 'task:task-detail' task.pk %}" style="text-decoration: none; color: #627979;">{{ task.title }}</a></h3>
-        <p><strong>Status:</strong> {{ task.status }}</p>
+    <div class="task-card" style="margin-top: 15px; margin-bottom: 15px;">
+        <h3 ><a class="task-title" href="{% url 'task:task-detail' task.pk %}">{{ task.title }}</a></h3>
+        <p class="task-status"><strong>Status:</strong> {{ task.status }}</p>
     </div>
     {% empty %}
     <p>No tasks found.</p>
@@ -35,6 +35,6 @@
     <div style="margin-bottom: 10px;">
         {{ form.as_p }}
     </div>
-    <button type="submit" style="background-color: #627979; color: white; border: none; padding: 10px 20px; border-radius: 5px;">Filter</button>
+    <button type="submit" class="task-button">Filter</button>
 </form>
 {% endblock %}

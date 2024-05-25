@@ -48,6 +48,7 @@ class TaskCreateView(CreateView):
     model = models.Task
     form_class = TaskForm
     success_url = reverse_lazy('task:task-list')
+    template_name = 'task/task_create.html'
 
 class TaskUpdateView(LoginRequiredMixin, UserIsOwnerMixin, UpdateView):
     model = models.Task
