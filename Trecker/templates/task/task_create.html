@@ -1,21 +1,21 @@
-{% extends 'base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>dfgfd</title>
-    <style>
-
-    </style>
+    <title>Task Tracker</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/create_task.css' %}">
 </head>
 <body>  
 {% block content %}
-<div class="container mt-3">
+<div class="container mt-5">
     <h2>{{ view.title }}</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Зберегти</button>
+        <button type="submit" class="btn btn-success mt-3">Зберегти</button>
     </form>
 </div>
 {% endblock %}
+</body>
+</html>

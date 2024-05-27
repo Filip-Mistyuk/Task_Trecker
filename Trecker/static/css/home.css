@@ -32,7 +32,7 @@
 }
 
 .task-button {
-    background-color: #A1FD9C; 
+    background-color: #2779a7; 
     color: white; 
     border: none; 
     padding: 15px 30px; 
@@ -43,7 +43,7 @@
 
 .task-button:hover {
     color: #3c3d3f;
-    background-color: #86f780; 
+    background-color: #226c97; 
 }
 
 .task-status {
@@ -54,7 +54,7 @@
 
 .container {
     max-width: 800px;
-    margin: auto;
+    margin-left: 500px;
 }
 
 .container_2 {
@@ -90,4 +90,22 @@
 .btn-primary:hover {
     background-color: #0056b3;
     border-color: #004085;
+} 
+.complete-button {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    margin-left: 200px;
+    margin-right: 200px;
+
+}
+
+.background {
+    background-color: #49c5b6;
+    margin-left: 15px;
+    margin-top: 15px;
+    margin-right: 15px;
+    border-radius: 50px;
+    height: 930px;
 }

@@ -1,0 +1,116 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container_2 {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    margin-bottom: 20px;
+    border: none;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    color: #343a40;
+}
+
+.card-text {
+    color: #7d6c6c;
+}
+
+.badge-primary {
+    color: #ff0000;
+}
+
+.badge-secondary {
+    color: #ff0000;
+}
+
+.comments {
+    margin-top: 40px;
+}
+
+.comment-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.media-content img,
+.media-content video {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.btn {
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-right: 10px; /* Добавлен отступ справа */
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-end {
+    justify-content: flex-end;
+}
+
+.home-button {
+    background-color: #007bff;
+    text-decoration: none;
+    margin-left: 900px; 
+    justify-content: center; 
+    margin: 0px; 
+    display: flex;
+    margin-left: 800px;
+    margin-right: 800px;
+    margin-top: 10px;
+    height: 50px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #036ee0;
+}

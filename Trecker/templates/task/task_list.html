@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="background">
 <div class="container">
     <header class="navbar" style="margin-left: 20px; margin-right: 20px; margin-top: 5px;">
         <a href="/" class="navbar-brand" style="text-decoration: none; color: #627979; margin-left: 50px;">
@@ -20,11 +21,12 @@
     </header>
 </div>
 <h2 style="text-align: center;">Task List</h2>
-<div class="task-cards" style="display: flex; justify-content: center; margin-right: 50px; margin-left: 50px; background-color: #A1FD9C; border-radius: 30px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+<div class="task-cards" style="display: flex; justify-content: center; margin-right: 50px; margin-left: 50px; background-color: #2779a7; border-radius: 30px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
     {% for task in tasks %}
     <div class="task-card" style="margin-top: 15px; margin-bottom: 15px;">
         <h3 ><a class="task-title" href="{% url 'task:task-detail' task.pk %}">{{ task.title }}</a></h3>
         <p class="task-status"><strong>Status:</strong> {{ task.status }}</p>
+        <a href="{% url 'task:task-delete' task.pk %}" class="complete-button">Complete</a>
     </div>
     {% empty %}
     <p>No tasks found.</p>
@@ -37,4 +39,5 @@
     </div>
     <button type="submit" class="task-button">Filter</button>
 </form>
+</div>
 {% endblock %}

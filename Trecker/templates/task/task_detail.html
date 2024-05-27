@@ -1,50 +1,67 @@
-{% extends 'base.html' %}
-
-{% block content %}
-{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Tracker</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/task_detail.css' %}">
+</head>
+<body>  
+    {% block content %}
+    {% load custom_tags %}
+<a href="/" class="home-button"><img src="{% static 'img/arrow_2.png' %}" alt="Not Found"></a>
 <div class="container_2 mt-5">
-    <div class="card shadow-sm">
+    <!-- Карточка задачи -->
+    <div class="card shadow-sm mb-4">
         <div class="card-body">
             <h2 class="card-title text-center display-4">{{ task.title }}</h2>
             <p class="card-text lead">{{ task.description }}</p>
             <p class="mb-2"><strong>Статус:</strong> <span class="badge badge-primary">{{ task.status }}</span></p>
             <p class="mb-4"><strong>Пріоритет:</strong> <span class="badge badge-secondary">{{ task.priority }}</span></p>
+            
+            <!-- Кнопки обновления и удаления -->
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'task:task-update' task.id %}" class="btn btn-warning" style="text-decoration: none;">Обновити задачу</a>
+                <form action="{% url 'task:task-delete' task.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Ви впевнені, що хочете видалити цю задачу?');">Видалити задачу</button>
+                </form>
+            </div>
         </div>
     </div>
-
     <!-- Коментарі -->
     <div class="comments mt-5">
         <h3 class="text-muted">Коментарі</h3>
-        <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="row">
             {% for comment in task.comments.all %}
-                <div class="col">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <p class="card-text">{{ comment.content }}</p>
-                            {% if comment.media %}
-                                <div class="media-content my-3">
-                                    {% if comment.media.url|endswith:".jpg" or comment.media.url|endswith:".png" or comment.media.url|endswith:".jpeg" %}
-                                        <img src="{{ comment.media.url }}" alt="Зображення коментаря" class="img-fluid rounded">
-                                    {% elif comment.media.url|endswith:".mp4" %}
-                                        <video class="video-fluid rounded" controls style="width: 100%;">
-                                            <source src="{{ comment.media.url }}" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    {% else %}
-                                        <a href="{{ comment.media.url }}" class="btn btn-link">Завантажити файл</a>
-                                    {% endif %}
-                                </div>
+            <div class="col-12 col-md-6">
+                <div class="comment-card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">{{ comment.content }}</p>
+                        {% if comment.media %}
+                        <div class="media-content my-3">
+                            {% if comment.media.url|endswith:".jpg" or comment.media.url|endswith:".png" or comment.media.url|endswith:".jpeg" %}
+                            <img src="{{ comment.media.url }}" alt="Зображення коментаря" class="img-fluid rounded">
+                            {% elif comment.media.url|endswith:".mp4" %}
+                            <video class="video-fluid rounded" controls style="width: 100%;">
+                                <source src="{{ comment.media.url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            {% else %}
+                            <a href="{{ comment.media.url }}" class="btn btn-link">Завантажити файл</a>
                             {% endif %}
-                            <small class="text-muted">Автор: {{ comment.author.username }}</small>
                         </div>
+                        {% endif %}
+                        <small class="text-muted">Автор: {{ comment.author.username }}</small>
                     </div>
                 </div>
+            </div>
             {% empty %}
-                <p class="text-muted">Коментарі відсутні.</p>
+            <p class="text-muted">Коментарі відсутні.</p>
             {% endfor %}
         </div>
     </div>
-
+    
     <!-- Форма додавання коментаря -->
     <div class="add-comment mt-5">
         <div class="card shadow-sm">
@@ -60,3 +77,5 @@
     </div>
 </div>
 {% endblock %}
+</body>
+</html>
