@@ -1,5 +1,12 @@
-{% extends 'base.html' %}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/delete.css' %}">
+</head>
+<body>
 {% block content %}
 <div class="container">
     <h2>Видалення завдання</h2>
@@ -7,8 +14,10 @@
 
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Так, видалити</button>
-        <a href="{% url 'task:task-list' %}">Ні, повернутися до списку завдань</a>
+        <button type="submit" class="btn btn-danger">Так, видалити</button>
+        <a href="{% url 'task:task-list' %}" class="btn btn-secondary">Ні, повернутися до списку завдань</a>
     </form>
 </div>
 {% endblock %}
+</body>
+</html>

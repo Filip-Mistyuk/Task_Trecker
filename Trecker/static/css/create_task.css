@@ -58,3 +58,23 @@ form button.btn {
 form button.btn:hover {
     background-color: #218838;
 }
+
+.home-button {
+    background-color: #ffffff;
+    text-decoration: none;
+    margin-left: 900px; 
+    justify-content: center; 
+    margin: 0px; 
+    display: flex;
+    margin-left: 800px;
+    margin-right: 800px;
+    margin-top: 10px;
+    height: 50px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #a8a8a8;
+}

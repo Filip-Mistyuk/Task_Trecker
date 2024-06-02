@@ -1,111 +1,161 @@
-.task-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.task-card {
-    border: 1px solid #38A433	;
-    padding: 10px;
-    width: calc(33.33% - 20px); /* Ширина карточки, например, 33% с учетом отступов */
-    background-color: #B9FEB5	;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 25px;
-}
-
-.task-card h3 {
-    margin-top: 0;
-}
-
-.task-card p {
+body {
     margin: 0;
-}
-
-.task-title {
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.task-title:hover {
-    color: #3c3d3f;
-}
-
-.task-button {
-    background-color: #2779a7; 
-    color: white; 
-    border: none; 
-    padding: 15px 30px; 
-    border-radius: 5px; 
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.task-button:hover {
-    color: #3c3d3f;
-    background-color: #226c97; 
-}
-
-.task-status {
-    color: rgb(0, 0, 0);
-}
-
-/* -------------------------------------------------------------------------------------------------------------------------------- */
-
-.container {
-    max-width: 800px;
-    margin-left: 500px;
-}
-
-.container_2 {
-    max-width: 800px;
-    margin: auto;
-}
-.card {
-    background-color: #ffffff;
-    border: none;
-    border-radius: 10px;
-}
-.card-title {
-    font-weight: bold;
-    color: #343a40;
-}
-.card-text {
-    color: #6c757d;
-}
-.media-content img, .media-content video {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-.add-comment form {
+    padding: 0;
+    font-family: Arial, sans-serif;
     background-color: #f8f9fa;
-    border-radius: 10px;
-}
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    border-radius: 10px;
-}
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-} 
-.complete-button {
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    background-color: #ffffff;
-    margin-left: 200px;
-    margin-right: 200px;
-
+    color: #333;
 }
 
 .background {
-    background-color: #49c5b6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(180deg, #000, #fff);
+    height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    background-color: #000;
+    color: #fff;
+    border-radius: 30px;
+    width: 1200px;
+    height: 100px;
+    transition: transform 0.3s ease;
+}
+
+.navbar:hover {
+    transform: translateY(-5px);
+}
+
+.navbar-brand {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    margin-right: 700px
+}
+
+.navbar-nav {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
     margin-left: 15px;
-    margin-top: 15px;
     margin-right: 15px;
-    border-radius: 50px;
-    height: 930px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #555;
+}
+
+.text-center {
+    text-align: center;
+    margin: 20px 0;
+    color: #fff;
+}
+
+.task-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.task-card {
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    padding: 20px;
+    width: 250px;
+    transition: transform 0.3s ease;
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+}
+
+.task-title {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.task-title:hover {
+    color: #555;
+}
+
+.task-status {
+    color: #666;
+    margin: 10px 0;
+}
+
+.delete-icon {
+    height: 20px;
+    width: 20px;
+    transition: opacity 0.3s ease;
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.delete-icon:hover {
+    opacity: 0.6;
+}
+
+.filter-form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.task-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.task-button:hover {
+    background-color: #333;
+}
+
+.bottom-navbar {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    border: 3px;
+    border-color: #000;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    margin-left: 15px
 }

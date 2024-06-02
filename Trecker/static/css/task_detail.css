@@ -96,7 +96,7 @@ body {
 }
 
 .home-button {
-    background-color: #007bff;
+    background-color: #ffffff;
     text-decoration: none;
     margin-left: 900px; 
     justify-content: center; 
@@ -112,5 +112,5 @@ body {
 }
 
 .home-button:hover {
-    background-color: #036ee0;
+    background-color: #a8a8a8;
 }

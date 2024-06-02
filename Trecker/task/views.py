@@ -8,13 +8,16 @@ from django.urls import reverse_lazy
 from . import models
 from . forms import TaskForm, TaskFilterForm, CommentForm
 from task.mixins import UserIsOwnerMixin
+from django.contrib.auth.decorators import login_required
 
-class TaskListView(ListView):
+class TaskListView(LoginRequiredMixin, ListView):
     model = models.Task
     context_object_name = 'tasks'
     template_name = 'task/task_list.html'
+
     def get_queryset(self):
-        queryset = super().get_queryset()
+        user = self.request.user
+        queryset = models.Task.objects.filter(user=user)
         status = self.request.GET.get('status', '')
         if status:
             queryset = queryset.filter(status=status)
@@ -54,6 +57,7 @@ class TaskUpdateView(LoginRequiredMixin, UserIsOwnerMixin, UpdateView):
     model = models.Task
     form_class = TaskForm
     success_url = reverse_lazy('task:task-list')
+    template_name = 'task/task_update.html'
 
 class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Task
@@ -90,3 +94,5 @@ def register_view(request):
     else:
         form = UserCreationForm()
     return render(request, 'task/register.html', {'form': form})
+
+

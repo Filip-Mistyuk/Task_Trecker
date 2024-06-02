@@ -1,43 +1,51 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
 <div class="background">
-<div class="container">
-    <header class="navbar" style="margin-left: 20px; margin-right: 20px; margin-top: 5px;">
-        <a href="/" class="navbar-brand" style="text-decoration: none; color: #627979; margin-left: 50px;">
-            <h1> Booking system</h1>
-        </a>
-        <nav>
-            <ul class="navbar-nav">
-                {% if request.user.is_authenticated %}
-                <li class="nav-item"><a href="{% url 'task:task-create' %}" class="nav-link">Create Task</a></li>
-                <li class="nav-item"><a href="{% url 'task:logout' %}" class="nav-link">Logout</a></li>
-                {% else %}
-                <li class="nav-item"><a href="{% url 'task:login' %}" class="nav-link">Login</a></li>
-                <li class="nav-item"><a href="{% url 'task:register' %}" class="nav-link">Register</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
-</div>
-<h2 style="text-align: center;">Task List</h2>
-<div class="task-cards" style="display: flex; justify-content: center; margin-right: 50px; margin-left: 50px; background-color: #2779a7; border-radius: 30px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-    {% for task in tasks %}
-    <div class="task-card" style="margin-top: 15px; margin-bottom: 15px;">
-        <h3 ><a class="task-title" href="{% url 'task:task-detail' task.pk %}">{{ task.title }}</a></h3>
-        <p class="task-status"><strong>Status:</strong> {{ task.status }}</p>
-        <a href="{% url 'task:task-delete' task.pk %}" class="complete-button">Complete</a>
+    <div class="container">
+        <header class="navbar">
+            <img class="icon" src="{% static 'img/icon_3.png' %}" alt="Not Found" style="width: 50px; height: 50px; margin-left: 15px">
+            <a href="/" class="navbar-brand">
+                <h1>Task Trecker</h1>
+            </a>
+            <nav>
+                <ul class="navbar-nav">
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a href="{% url 'task:task-create' %}" class="nav-link">Create Task</a></li>
+                        <li class="nav-item"><a href="{% url 'task:logout' %}" class="nav-link">Logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a href="{% url 'task:login' %}" class="nav-link">Login</a></li>
+                        <li class="nav-item"><a href="{% url 'task:register' %}" class="nav-link">Register</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
     </div>
-    {% empty %}
-    <p>No tasks found.</p>
-    {% endfor %}
+
+    <h2 class="text-center">Task List</h2>
+
+    <div class="task-cards">
+        {% for task in tasks %}
+            <div class="task-card">
+                <h3><a class="task-title" href="{% url 'task:task-detail' task.pk %}">{{ task.title }}</a></h3>
+                <p class="task-status"><strong>Status:</strong> {{ task.status }}</p>
+                <a href="{% url 'task:task-delete' task.pk %}">
+                    <img src="{% static 'img/tick.png' %}" alt="Delete Task" class="delete-icon">
+                </a>
+            </div>
+        {% empty %}
+            <p>No tasks found.</p>
+        {% endfor %}
+    </div>
+
+    <form method="get" class="filter-form">
+        {{ form.as_p }}
+        <button type="submit" class="task-button">Filter</button>
+    </form>
 </div>
 
-<form method="get" style="text-align: center;">
-    <div style="margin-bottom: 10px;">
-        {{ form.as_p }}
-    </div>
-    <button type="submit" class="task-button">Filter</button>
-</form>
+<div class="bottom-navbar">
+    <p >Copyright © 2024</p>
 </div>
 {% endblock %}
